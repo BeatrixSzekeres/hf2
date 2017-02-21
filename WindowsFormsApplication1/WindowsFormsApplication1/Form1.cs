@@ -9,7 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace festegeto
+namespace prime
 {
     public partial class Form1 : Form
     {
@@ -21,52 +21,37 @@ namespace festegeto
         Bitmap buffer;
         Graphics bufferg;
 
-
-        Thread t;
-
-      /*  private void button1_Click(object sender, EventArgs e)
-        {
-          //  button1.Enabled = false;
-
-            t = new Thread(new ThreadStart(szal));
-            t.Start();
-        }*/
-
         void szal()
         {
-            bufferg.Clear(Color.White);
-
-            int h, w;
-
             
-                h = Height;
-                w = Width;
+            int h, w;
+            
+                h = buffer.Height;
+                w = buffer.Width;
             
 
             for (int y = 0; y < h; y++)
                 for (int x = 0; x < w; x++)
-                    if ((y * w + x) % 8 == 1)
+                    if ((h * w + x) % 8 == 1)
                         buffer.SetPixel(x, y, Color.Black);
 
-        
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if (buffer == null)
-                return;
-
-            using (Graphics g = panel2.CreateGraphics())
-            {
-               
-                    g.DrawImage(buffer, 0, 0);
-            }
+          
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+            buffer = new Bitmap(panel2.Width, panel2.Height);
+            lock (buffer)
+                bufferg = Graphics.FromImage(buffer);
         }
-        
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
