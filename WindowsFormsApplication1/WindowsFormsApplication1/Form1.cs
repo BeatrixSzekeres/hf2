@@ -78,11 +78,7 @@ namespace prime
             lock (buffer)
                 bufferg = Graphics.FromImage(buffer);
         }
-
-        private void panel2_Click(object sender, EventArgs e)
-        {
-
-        }
+        
 
         public void panel2_MouseClick(object sender, MouseEventArgs e)
         {
