@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsFormsApplication1;
 
 namespace prime
 {
@@ -17,6 +18,7 @@ namespace prime
         {
             InitializeComponent();
         }
+            
         Thread t;
         Bitmap buffer;
         Graphics bufferg;
@@ -28,6 +30,7 @@ namespace prime
             bufferg.Clear(Color.White);
 
             int h, w;
+            int szam = 1;
 
             lock (buffer)
             {
@@ -37,9 +40,15 @@ namespace prime
 
             for (int y = 0; y < h; y++)
                 for (int x = 0; x < w; x++)
-                    if ((h * w + x) % 8 == 1)
-                        buffer.SetPixel(x, y, Color.Black);
-            this.Invoke(new Action(() => { button1.Enabled = true; }));
+                {
+                    szam++;
+                    if (PrimeSearcher.PrimeS(szam) == ("Prím"))
+                        lock (buffer)
+                            buffer.SetPixel(x, y, Color.Black);
+
+
+                }
+            
         }
 
         private void timer1_Tick(object sender, EventArgs e)
