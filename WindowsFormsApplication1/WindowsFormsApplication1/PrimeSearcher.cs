@@ -8,24 +8,29 @@ namespace WindowsFormsApplication1
 {
     class PrimeSearcher
     {
-        static PrimeSearcher()
+        public static string PrimeS(int szam)
         {
-            int pixel = 2; // ha a ciklus a form pixelein megy végig, ez a változó lehetne az index. A kezdőérték csak ideiglenes!!
+         
+            bool prim_e;
             int oszto = 0;
-            for (int i = 1; i <= pixel; i++)
+            for (int i = 1; i <= szam; i++)
             {
-                if (pixel % i == 0)
+                if (szam % i == 0)
                     oszto++;
-                else { }
             }
             if (oszto == 2)
             {
-                //a szám prím, kifestés
+                prim_e = true;
             }
             else
-            {
-                //nem prím, nincs kifestés
-            }
+                prim_e = false;
+
+            if (prim_e == true)
+                return ("Prím");
+            else
+                return ("Nem prím");
+
+
         }
     }
 }
