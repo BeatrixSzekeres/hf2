@@ -43,14 +43,14 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(671, 76);
+            this.panel1.Size = new System.Drawing.Size(584, 44);
             this.panel1.TabIndex = 0;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(299, 12);
+            this.button1.Location = new System.Drawing.Point(22, 6);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(76, 58);
+            this.button1.Size = new System.Drawing.Size(76, 32);
             this.button1.TabIndex = 0;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
@@ -60,16 +60,21 @@
             // 
             this.panel2.BackColor = System.Drawing.Color.Aqua;
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 76);
+            this.panel2.Location = new System.Drawing.Point(0, 44);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(671, 393);
+            this.panel2.Size = new System.Drawing.Size(584, 317);
             this.panel2.TabIndex = 1;
+            this.panel2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.panel2_MouseClick);
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(671, 469);
+            this.ClientSize = new System.Drawing.Size(584, 361);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "Form1";
