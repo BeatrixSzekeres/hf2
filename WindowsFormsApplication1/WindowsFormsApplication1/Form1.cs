@@ -39,6 +39,7 @@ namespace prime
                 for (int x = 0; x < w; x++)
                     if ((h * w + x) % 8 == 1)
                         buffer.SetPixel(x, y, Color.Black);
+
             this.Invoke(new Action(() => { button1.Enabled = true; }));
         }
 
