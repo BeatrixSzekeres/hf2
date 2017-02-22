@@ -18,18 +18,29 @@ namespace prime
         {
             InitializeComponent();
         }
-            
         Thread t;
         Bitmap buffer;
         Graphics bufferg;
 
-        
+
+        Thread t;
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            button1.Enabled = false;
+
+            t = new Thread(new ThreadStart(szal));
+            t.Start();
+        }
+
+
         void szal()
         {
-
             bufferg.Clear(Color.White);
 
             int h, w;
+            int szam = 1;
+
             int szam = 1;
 
             lock (buffer)
@@ -40,15 +51,9 @@ namespace prime
 
             for (int y = 0; y < h; y++)
                 for (int x = 0; x < w; x++)
-                {
-                    szam++;
-                    if (PrimeSearcher.PrimeS(szam) == ("Prím"))
-                        lock (buffer)
-                            buffer.SetPixel(x, y, Color.Black);
-
-
-                }
-            
+                    if ((h * w + x) % 8 == 1)
+                        buffer.SetPixel(x, y, Color.Black);
+            this.Invoke(new Action(() => { button1.Enabled = true; }));
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -69,13 +74,42 @@ namespace prime
             lock (buffer)
                 bufferg = Graphics.FromImage(buffer);
         }
+        
 
-        private void button1_Click(object sender, EventArgs e)
+        public void panel2_MouseClick(object sender, MouseEventArgs e)
         {
-            button1.Enabled = false;
+            int h, w;
+            lock (buffer)
+            {
+                h = buffer.Height;
+                w = buffer.Width;
+            }
 
-            t = new Thread(new ThreadStart(szal));
-            t.Start();
+            int number = ((e.Y * w + e.X) + 2);
+
+            Form2 f2 = new Form2(String.Format("{0} : {1}", number, (PrimeSearcher.PrimeS(number))));
+            f2.ShowDialog(this);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            int h = panel2.Height;
+            int w = panel2.Width;
+            int max = 0;
+
+            for (int y = 0; y < h; y++)
+                for (int x = 0; x < w; x++)
+                {
+
+                    if (PrimeSearcher.PrimeS(((y * w + x) + 2)) == ("Prím")
+                        &&
+                        ((y * w + x) + 2) > max
+                        )
+                        max = ((y * w + x) + 2);
+                }
+
+            Form3 f3 = new Form3(String.Format("{0}", max));
+            f3.ShowDialog(this);
         }
     }
 }
